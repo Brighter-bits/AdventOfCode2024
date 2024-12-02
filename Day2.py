@@ -14,19 +14,19 @@ def p1():
             valid = True
             if 0 in ArrayDiff:
                 valid = False
-            for i in ArrayDiff:
+            for j in ArrayDiff:
                 if valid:
-                    if i < -3 or i > 3:
+                    if j < -3 or j > 3:
                         valid = False
             if ArrayDiff[0] > 0:
-                for i in range(0, len(ArrayDiff)):
+                for j in range(0, len(ArrayDiff)):
                     if valid:
-                        if ArrayDiff[i] < 0:
+                        if ArrayDiff[j] < 0:
                             valid = False
             else:
-                for i in range(0, len(ArrayDiff)):
+                for j in range(0, len(ArrayDiff)):
                     if valid:
-                        if ArrayDiff[i] > 0:
+                        if ArrayDiff[j] > 0:
                             valid = False
 
 
@@ -51,54 +51,56 @@ def p2():
             valid = True
             if 0 in ArrayDiff:
                 valid = False
-            for i in ArrayDiff:
+            for j in ArrayDiff:
                 if valid:
-                    if i < -3 or i > 3:
+                    if j < -3 or j > 3:
                         valid = False
             if ArrayDiff[0] > 0:
-                for i in range(0, len(ArrayDiff)):
+                for j in range(0, len(ArrayDiff)):
                     if valid:
-                        if ArrayDiff[i] < 0:
+                        if ArrayDiff[j] < 0:
                             valid = False
             else:
-                for i in range(0, len(ArrayDiff)):
+                for j in range(0, len(ArrayDiff)):
                     if valid:
-                        if ArrayDiff[i] > 0:
+                        if ArrayDiff[j] > 0:
                             valid = False
 
 
             if valid:
                 Differences.append(ArrayDiff)
             else:
-                for i in range(len(input[i])-1):
+                print(input[i])
+                for j in range(len(input[i])):
                     newinput = list(input[i])
-                    newinput.pop(i)
+                    newinput.pop(j)
+                    print(newinput, j)
                     valid = True
                     ArrayDiff = []
-                    for j in range(len(newinput)-1):
-                        ArrayDiff.append(newinput[j+1] - newinput[j])
+                    for k in range(len(newinput)-1):
+                        ArrayDiff.append(newinput[k+1] - newinput[k])
                     valid = True
                     if 0 in ArrayDiff:
                         valid = False
-                    for i in ArrayDiff:
+                    for k in ArrayDiff:
                         if valid:
-                            if i < -3 or i > 3:
+                            if k < -3 or k > 3:
                                 valid = False
                     if ArrayDiff[0] > 0:
-                        for i in range(0, len(ArrayDiff)):
+                        for k in range(0, len(ArrayDiff)):
                             if valid:
-                                if ArrayDiff[i] < 0:
+                                if ArrayDiff[k] < 0:
                                     valid = False
                     else:
-                        for i in range(0, len(ArrayDiff)):
+                        for k in range(0, len(ArrayDiff)):
                             if valid:
-                                if ArrayDiff[i] > 0:
+                                if ArrayDiff[k] > 0:
                                     valid = False
                     if valid:
                         Differences.append(ArrayDiff)
                         break
 
-    print(Differences)
+    # print(Differences)
     print(len(Differences))
-
+# p1()
 p2()
