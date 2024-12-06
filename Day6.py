@@ -1,3 +1,4 @@
+from copy import deepcopy
 def p1():
     with open("input6.txt", "r") as f:
         Area = f.readlines()
@@ -39,7 +40,7 @@ def p1():
         print(loop)
 
 def p2():
-    with open("input6.txt", "r") as f:
+    with open("Input6.txt", "r") as f:
         Area = f.readlines()
         Area = list(map(lambda x: list(x), Area))
         Xindex = -1
@@ -53,182 +54,130 @@ def p2():
         FXindex = Xindex
         FYindex = Yindex
         Direction = 0 # 0 is forwards, 1 is right, 2 is down, 3 is left
-        Step = 0
+        Steps = []
         for i in range(len(Area)):
             Area[i] = [e for e in Area[i] if e != "\n"]
-        while 0 <= Xindex <= len(Area[0]) and 0 <= Yindex <= 129:
+
+        while 0 <= Xindex <= len(Area[0])-1 and 0 <= Yindex <= 129:
+            Steps.append([Yindex, Xindex])
             match Direction:
                 case 0:
-                    if Area[Yindex][Xindex] != ".":
-                        Area[Yindex][Xindex] += "U"
-                    else:
-                        Area[Yindex][Xindex] = "U"
-                    
-                    if Area[Yindex-1][Xindex] == "#":
-                        Direction += 1
-                    else:
-                        Yindex -= 1
+                    try:
+                        if Area[Yindex-1][Xindex] == "#":
+                            Direction += 1
+                        else:
+                            Yindex -= 1
+                    except:
+                        break
 
                 case 1:
-                    if Area[Yindex][Xindex] != ".":
-                        Area[Yindex][Xindex] += "R"
-                    else:
-                        Area[Yindex][Xindex] = "R"
-                    if Area[Yindex][Xindex+1] == '#':
-                        Direction += 1
-                    else:
-                        Xindex += 1
+
+                    try:
+                        if Area[Yindex][Xindex+1] == '#':
+                            Direction += 1
+                        else:
+                            Xindex += 1
+                    except: break
                 case 2:
-                    if Area[Yindex][Xindex] != ".":
-                        Area[Yindex][Xindex] += "D"
-                    else:
-                        Area[Yindex][Xindex] = "D"
 
-                    if Area[Yindex+1][Xindex] == '#':
-                        Direction += 1
-                    else:
-                        Yindex += 1
+                    try:
+                        if Area[Yindex+1][Xindex] == '#':
+                            Direction += 1
+                        else:
+                            Yindex += 1
+                    except: break
                 case 3:
-                    if Area[Yindex][Xindex] != ".":
-                        Area[Yindex][Xindex] += "L"
-                    else:
-                        Area[Yindex][Xindex] = "L"
-
-                    if Area[Yindex][Xindex-1] == '#':
-                        Direction = 0
-                    else:
-                        Xindex -= 1
-            Step += 1
+                    try:
+                        if Area[Yindex][Xindex-1] == '#':
+                            Direction = 0
+                        else:
+                            Xindex -= 1
+                    except: break
         print("\n")
-        for i in Area:
-            print(i)
-        print(Step)
-        for i in range(Step):
+        print(len(Steps))
+        cache = Steps
+        Steps = []
+        for i in cache:
+            if i not in Steps:
+                Steps.append(i)
+        print(len(Steps))
+        for Coords in Steps:
             Xindex = FXindex
             Yindex = FYindex
-            Place = list(Area)
-            Test = 0
-            Step2 = 0
+            Place = deepcopy(Area)
             Continue = True
             Direction = 0
-            while Continue and (0 <= Xindex <= len(Area[0]) and 0 <= Yindex <= 129):
+            if (Coords[0] == FYindex and Coords[1] == Xindex):
+                Continue = False
+            else:
+                Place[Coords[0]][Coords[1]] = "#"
+            if loop == 600:
+                # breakpoint()
+                pass
+            while Continue and (0 <= Xindex <= len(Area[0])-1 and 0 <= Yindex <= 129):
                 match Direction:
                     case 0:
-                        if Test == 2 and ("U" in Place[Yindex][Xindex]):
+                        if "U" in Place[Yindex][Xindex]:
                             loop += 1
                             Continue = False
-                        if Place[Yindex][Xindex] != ".":
-                            Place[Yindex][Xindex] += "U"
-                        else:
-                            Place[Yindex][Xindex] = "U"
-                        
-                        if Test == 1:
-                            Test += 1
-                        if Step2 == i:
-                            try:
-                                Place[Yindex-1][Xindex] = "#"
-                            except:
-                                Continue = False
-                            Test +=1
+                        Place[Yindex][Xindex] += "U"
 
                         try:
                             if Place[Yindex-1][Xindex] == "#":
                                 Direction += 1
-                            else:
-                                Yindex -= 1
                         except:
                             Continue = False
 
-
-
                     case 1:
-                        if Test == 2 and ("R" in Place[Yindex][Xindex]):
+                        if "R" in Place[Yindex][Xindex]:
                             loop += 1
                             Continue = False
-                        if Place[Yindex][Xindex] != ".":
-                            Place[Yindex][Xindex] += "R"
-                        else:
-                            Place[Yindex][Xindex] = "R"
-
-                        if Test == 1:
-                            Test += 1
-
-                        if Step2 == i:
-                            try:
-                                Place[Yindex][Xindex+1] = "#"
-                            except:
-                                Continue = False
-                            Test += 1
+                        Place[Yindex][Xindex] += "R"
 
                         try:
                             if Place[Yindex][Xindex+1] == '#':
                                 Direction += 1
-                            else:
-                                Xindex += 1
                         except:
                             Continue = False
 
-
-
                     case 2:
-                        if Test == 2 and ("D" in Place[Yindex][Xindex]):
+                        if "D" in Place[Yindex][Xindex]:
                             loop += 1
                             Continue = False
-                        if Place[Yindex][Xindex] != ".":
-                            Place[Yindex][Xindex] += "D"
-                        else:
-                            Place[Yindex][Xindex] = "D"
-
-                        if Test == 1:
-                            Test += 1
-
-                        if Step2 == i:
-                            try:
-                                Place[Yindex+1][Xindex] = "#"
-                            except:
-                                Continue = False
-                            Test += 1
+                        Place[Yindex][Xindex] += "D"
 
                         try:
                             if Place[Yindex+1][Xindex] == '#':
                                 Direction += 1
-                            else:
-                                Yindex += 1
                         except:
                             Continue = False
-
-      
                     
                     case 3:
-                        if Test == 2 and ("L" in Place[Yindex][Xindex]):
+                        if "L" in Place[Yindex][Xindex]:
                             loop += 1
                             Continue = False
-                        if Place[Yindex][Xindex] != ".":
-                            Place[Yindex][Xindex] += "L"
-                        else:
-                            Place[Yindex][Xindex] = "L"
 
-                        if Test == 1:
-                            Test += 1
+                        Place[Yindex][Xindex] += "L"
 
-                        if Step2 == i:
-                            try:
-                                Place[Yindex][Xindex-1] = "#"
-                            except:
-                                Continue = False
-                            Test += 1
 
                         try:
                             if Place[Yindex][Xindex-1] == '#':
                                 Direction = 0
-                            else:
-                                Xindex -= 1
                         except:
                             Continue = False
 
+                match Direction:
+                    case 0:
+                        Yindex -= 1
+                    case 1:
+                        Xindex += 1
+                    case 2:
+                        Yindex += 1
+                    case 3:
+                        Xindex -= 1
 
-                Step2 += 1
-            print("Complete", i)
+            
+            # print("Complete", Coords, loop)
         print(loop)
 
 p2()
