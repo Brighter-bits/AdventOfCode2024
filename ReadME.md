@@ -24,3 +24,12 @@ Looking at it now, we've suddenly gone from 2<sup>9</sup> to 3<sup>9</sup> which
 There's probably a better way to do it, but I'm quite happy with my solution. I had to switch up how python handled the mask though, as previously it was
 a binary number which played nice, but I had to change it to an integer which just so happened to not have a digit greater than 2. Overall, good day, if I hadn't
 slept through most of it.
+
+# Day 8
+
+I've only slept 1/4 of the day away (I need to fix my sleep schedule). First part looks simple enough (though I always say that).
+First, make a separate 2D array for each kind of node, get the distances, multiply by -1 to get the opposite direction. Then once you have all of the antinodes, overlay all of the arrays and count.
+
+Perfect, now I just need to do the same, but continue extrapolating the vector until it goes out of bounds! It was going well, until I found that apparently this time each antenna also is an antinode.
+
+Added that and it worked perfectly
