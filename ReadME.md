@@ -33,3 +33,8 @@ First, make a separate 2D array for each kind of node, get the distances, multip
 Perfect, now I just need to do the same, but continue extrapolating the vector until it goes out of bounds! It was going well, until I found that apparently this time each antenna also is an antinode.
 
 Added that and it worked perfectly
+
+# Day 9
+
+Once again, first part was quite nice, work from the top until there are no free spaces left. Part two looks a lot harder.
+My solution is probably going to be a dictionary with the index as the key and the number of free spaces as the value.
