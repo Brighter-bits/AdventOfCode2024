@@ -38,3 +38,5 @@ Added that and it worked perfectly
 
 Once again, first part was quite nice, work from the top until there are no free spaces left. Part two looks a lot harder.
 My solution is probably going to be a dictionary with the index as the key and the number of free spaces as the value.
+
+I kept getting everything wrong, because the program would see the free space left behind by the numbers jumping forward and decide to move them backwards, so I had to change that. Otherwise, good day

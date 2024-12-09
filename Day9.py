@@ -58,7 +58,9 @@ def P2(Scrambled):
         except Exception as e:
             print(e)
             break
-        Murder = Place = next((k for k, v in Gaps.items() if k >= len(UnScrambled)), None)
+        # if Instinct == 2:
+        #     breakpoint()
+        Murder = Place = next((k for k, v in Gaps.items() if k >= len(UnScrambled)+pointer), None)
         if Murder != None:
             Gaps.pop(Murder)
         Place = next((k for k, v in Gaps.items() if v[0] >= -pointerAdd), None)
@@ -74,7 +76,7 @@ def P2(Scrambled):
                 UnScrambled[pointer] = "."
                 pointer -= 1
         else:
-            pointer += pointerAdd - 1
+            pointer += pointerAdd
         # breakpoint()
     return UnScrambled
 
@@ -83,7 +85,7 @@ def P2(Scrambled):
 
 
 
-with open("Example9.txt", "r") as f:
+with open("input9.txt", "r") as f:
     input = list(map(int, list(f.read().replace("\n", ""))))
     Empty = False
     Scrambled = []
