@@ -94,5 +94,3 @@ with open("input10b.txt", "r") as f:
                 Follow(Cy, Cx, 1)
                 print("Done")
     print(total)
-
- 

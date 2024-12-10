@@ -47,4 +47,12 @@ ASCII let's go! I can actually do this. Just need to split by commas and newline
 
 ... I accidentally completed the first part of 2023 Day 15... That was silly of me.
 
-The actual puzzle shouldn't be too bad, it seems similar to the word search, so I should be fine
+The actual puzzle shouldn't be too bad, it seems similar to the word search, so I should be fine.
+
+
+Part 1 had quite a few errors, a single off by one error where I tried to find an adjacent 0 first instead an adjacent 1,
+unfortunately, I made a terrible mistake, I kept counting every single route to every single 9 instead of just one route.
+
+I fixed it without too much editing. My face must have practically lit up after reading part 2, which wanted every single route.
+
+That was almost certainly the fastest part 2 I've ever done. Now I'll be bored for the rest of the day.
