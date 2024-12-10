@@ -40,3 +40,11 @@ Once again, first part was quite nice, work from the top until there are no free
 My solution is probably going to be a dictionary with the index as the key and the number of free spaces as the value.
 
 I kept getting everything wrong, because the program would see the free space left behind by the numbers jumping forward and decide to move them backwards, so I had to change that. Otherwise, good day
+
+# Day 10
+
+ASCII let's go! I can actually do this. Just need to split by commas and newlines, then do some fun ASCII stuff.
+
+... I accidentally completed the first part of 2023 Day 15... That was silly of me.
+
+The actual puzzle shouldn't be too bad, it seems similar to the word search, so I should be fine
