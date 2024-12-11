@@ -15,6 +15,6 @@ with open("input11.txt", "r") as f:
             else:
                 Cache.append(str(int(Stones[number]) * 2024)) 
         Stones = list(Cache)
-        print(i)
+        print(str(i), str(len(Stones)))
     print(len(Stones))
 
