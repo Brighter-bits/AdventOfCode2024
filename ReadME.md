@@ -65,4 +65,14 @@ Oh god, oh god, it gets exponential. What the hell???? I have a feeling I'll nee
 
 After some thinking, it's definitely something to do with recursion. Once a stone gets to 0, it follows a set pattern of splitting which doesn't change. Although how I would use that I have no clue.
 
-Actually, just testing with a single 0, barely gets me to 35 blinks. Slightly less than halfway. There has to be an even better way than just counting the number of zeroes and the index. 
+Actually, just testing with a single 0, barely gets me to 35 blinks. Slightly less than halfway. There has to be an even better way than just counting the number of zeroes and the index.
+
+Turns out I'm supposed to use the dreaded memoisation I avoided last year, it's actually really easy to implement. Now I just need to somehow make it work even better.
+
+Just a quick Note: Memoisation, or basically caching, is where you take the known result of a calculation and then use it instead of recalculating it. For example, what is one plus one?
+You don't need to use your fingers to count it because it's so easy. Same with square numbers. Computers have (basically) perfect memory, and do don't need to a calculation
+a billion times to remember the answer, just once.
+
+Next is Counter, which is basically what I've been doing with my dictionaries but optimised properly. It counts how many times something occurs, that's it.
+
+OH MY GOD, I've fallen in love with Counters and Caching. So this is why people like it, who would have known. Probably me, if I hadn't chickened out last year.
