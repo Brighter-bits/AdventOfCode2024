@@ -56,3 +56,10 @@ unfortunately, I made a terrible mistake, I kept counting every single route to 
 I fixed it without too much editing. My face must have practically lit up after reading part 2, which wanted every single route.
 
 That was almost certainly the fastest part 2 I've ever done. Now I'll be bored for the rest of the day.
+
+# Day 11
+
+Seems simple enough, you're just adding stuff in arrays.
+
+Oh god, oh god, it gets exponential. What the hell???? I have a feeling I'll need a smarter solution than brute force...
+
