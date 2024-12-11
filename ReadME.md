@@ -63,3 +63,6 @@ Seems simple enough, you're just adding stuff in arrays.
 
 Oh god, oh god, it gets exponential. What the hell???? I have a feeling I'll need a smarter solution than brute force...
 
+After some thinking, it's definitely something to do with recursion. Once a stone gets to 0, it follows a set pattern of splitting which doesn't change. Although how I would use that I have no clue.
+
+Actually, just testing with a single 0, barely gets me to 35 blinks. Slightly less than halfway. There has to be an even better way than just counting the number of zeroes and the index. 

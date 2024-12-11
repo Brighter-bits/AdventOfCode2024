@@ -3,13 +3,14 @@ def P1():
     with open("input11.txt", "r") as f:
         Stones = f.readline().split(" ")
         Zero = re.compile(r'^0+')
+        Zeroes = 0
         for i in range(75):
             # breakpoint()
             Cache = []
             for number in range(len(Stones)):
                 # breakpoint()
                 if bool(re.search(Zero, Stones[number])):
-                    Cache.append("1")
+                    Zeroes += 1
                 elif len(Stones[number]) % 2 == 0:
                     # breakpoint()
                     Part1, Part2 = Stones[number][:(int((len(Stones[number])/2)))], Stones[number][(int(len(Stones[number])/2)):]
