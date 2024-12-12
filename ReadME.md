@@ -82,4 +82,14 @@ OH MY GOD, I've fallen in love with Counters and Caching. So this is why people 
 Looks like some flood fill stuff, I couldn't do stuff like this last year, but this year is different. I flood fill and then count "edges". We will always hit the field at the top left, so we only need to go
 right and down each time.
 
-Can't actually only go right and down as I also need to check for the edges on the left and top
+Can't actually only go right and down as I also need to check for the edges on the left and top.
+
+Whoa, another day which took far too long. A few problems include
+
+- Being unable to see the s at the end of a variable and using the wrong length
+- Trying to count everything twice
+- Letters being to the left of the topmost left item (solved by just getting rid of efficiency)
+- Going in circles (literally)
+- And more!
+
+But it's over and it's still technically the 12th. There's still 5 minutes till midnight
