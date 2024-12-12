@@ -76,3 +76,10 @@ a billion times to remember the answer, just once.
 Next is Counter, which is basically what I've been doing with my dictionaries but optimised properly. It counts how many times something occurs, that's it.
 
 OH MY GOD, I've fallen in love with Counters and Caching. So this is why people like it, who would have known. Probably me, if I hadn't chickened out last year.
+
+# Day 12
+
+Looks like some flood fill stuff, I couldn't do stuff like this last year, but this year is different. I flood fill and then count "edges". We will always hit the field at the top left, so we only need to go
+right and down each time.
+
+Can't actually only go right and down as I also need to check for the edges on the left and top
