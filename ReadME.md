@@ -100,8 +100,13 @@ The input looks annoying to parse, but won't be impossible. After that "ax + by 
 
 There's a limit of 100 so it should be fine. Oh, fun fact, people call HCF, GCD for some reason. Doing more research, there's another thing I can use
 
-Frobenius' coin problem says that if the HCF is 1 then the largest number which cannot be fored is ab - a - b, which is useful.
+Frobenius' coin problem says that if the HCF is 1 then the largest number which cannot be formed is ab - a - b, which is useful.
 
 Actually, just brute force it.
 
 OH MY GOD IT'S A SIMULTANEOUS EQUATION!
+
+OH MY GOD I NEED SO MANY DECIMAL PLACES!
+
+Okay, so I completely forgot you can use matrices to calculate simultaneous equations. Whoops, I've just done long, complex but very simple maths. I also forgot how exactly my 4d array was organised so I spent
+a while on that. Which was a bit of a pain. Overall, good fun.
