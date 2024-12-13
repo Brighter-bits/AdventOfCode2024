@@ -93,3 +93,15 @@ Whoa, another day which took far too long. A few problems include
 - And more!
 
 But it's over and it's still technically the 12th. There's still 5 minutes till midnight
+
+# Day 13
+
+The input looks annoying to parse, but won't be impossible. After that "ax + by = n" Hooray! And once I check it works, I can just brute force maybe?
+
+There's a limit of 100 so it should be fine. Oh, fun fact, people call HCF, GCD for some reason. Doing more research, there's another thing I can use
+
+Frobenius' coin problem says that if the HCF is 1 then the largest number which cannot be fored is ab - a - b, which is useful.
+
+Actually, just brute force it.
+
+OH MY GOD IT'S A SIMULTANEOUS EQUATION!

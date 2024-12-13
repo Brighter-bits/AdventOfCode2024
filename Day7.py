@@ -1,4 +1,3 @@
-
 Calc = lambda x, y, z: x*y if z == "1" else (int(str(x) + str(y)) if z == "2" else x+y) # If True Add, else Mult
 
 Part = 2
