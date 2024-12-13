@@ -27,11 +27,11 @@ with open("input13.txt", "r") as f:
         # breakpoint()
         MultA = Decimal(Cranes[i][1][1]/Cranes[i][1][0]) # Made from Y
         Step1 = ((Decimal(Cranes[i][2][0]))*MultA) # Taking this out makes it work, IDK why
-        a = round(float((Step1-Decimal(Cranes[i][2][1]))/((Decimal((Cranes[i][0][0]))*MultA)-(Decimal(Cranes[i][0][1])))), 6)
+        a = round(float((Step1-Decimal(Cranes[i][2][1]))/((Decimal((Cranes[i][0][0]))*MultA)-(Decimal(Cranes[i][0][1])))), 3)
         if a.is_integer():
             b = round(float((Cranes[i][2][0]-(a*Cranes[i][0][0]))/Cranes[i][1][0]), 6)
             if b.is_integer():
-                print(a, b)
+                print(a, b, i+1)
                 total += (int(a)*3) + int(b)
         
     print(total)
