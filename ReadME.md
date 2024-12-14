@@ -110,3 +110,19 @@ OH MY GOD I NEED SO MANY DECIMAL PLACES!
 
 Okay, so I completely forgot you can use matrices to calculate simultaneous equations. Whoops, I've just done long, complex but very simple maths. I also forgot how exactly my 4d array was organised so I spent
 a while on that. Which was a bit of a pain. Overall, good fun.
+
+# Day 14
+
+Looks simple enough, just take the coord, add the velocity * 100 and then mod by the grid
+
+Turns out MOD always returns a positive number and also it's the product of the numbers, not the sum (Bloody SMC Q1 all over again)
+
+I have to iterate, I tried to be smart about it but I'm stupid, so now I'm just going to fill up my drive until I see a Christmas tree.
+
+Also, I'm going to have to use PIL and NUMPY, still don't get the hype around NUMPY.
+
+NOPE, more research suggests that I use MatPlotLib instead.
+
+More research suggests using PIL
+
+ARGH, Got my XVelocity and YCoord mixed around, there we go, I finally found my Christmas Tree
