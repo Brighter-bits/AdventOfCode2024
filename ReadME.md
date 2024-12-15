@@ -126,3 +126,11 @@ NOPE, more research suggests that I use MatPlotLib instead.
 More research suggests using PIL
 
 ARGH, Got my XVelocity and YCoord mixed around, there we go, I finally found my Christmas Tree
+
+# Day 15
+
+Overall, seems quite simple, I just have to follow the movement along, if there's a wall, stop, if not, move.
+
+A single off by one error, but overall, nice and easy.
+
+This Second part looks quite a bit harder. Actually, upon further inspection, it might just be a simple edit to the move function.
