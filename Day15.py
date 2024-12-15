@@ -1,8 +1,22 @@
-import subprocess
-def Move(CY, CX, Direction, Boxed = False) -> bool:
+import io
+import os
+import time
+def Motion(CY, CX, New, NY, NX):
+    global Map
+    if Map[NY][NX] == ".":
+        Map[CY] = Map[CY][:CX] + "." + Map[CY][CX+1:]
+        Map[NY] = Map[NY][:NX] + New + Map[NY][NX+1:]
+    time.sleep(0.00000001)
+    os.system('cls')
+    for i in Map:
+        print(i)
+
+def Move(CY, CX, Direction) -> bool:
+    # breakpoint()
     global Map
     global Xindex
     global Yindex
+    global buffer
     NY = CY
     NX = CX
     match Direction:
@@ -20,48 +34,57 @@ def Move(CY, CX, Direction, Boxed = False) -> bool:
             return False
         case 'O':
             if Move(NY, NX, Direction):
-                Map[CY] = Map[CY][:CX] + "." + Map[CY][CX+1:]
-                Map[NY] = Map[NY][:NX] + "O" + Map[NY][NX+1:]
+                buffer.writelines(f'Motion({CY}, {CX}, "O", {NY}, {NX});')
+                # Map[CY] = Map[CY][:CX] + "." + Map[CY][CX+1:]
+                # Map[NY] = Map[NY][:NX] + "O" + Map[NY][NX+1:]
                 return True
         case '.':
             return True
         case '@':
             if Move(NY, NX, Direction):
+                buffer.seek(0)
+                exec(buffer.read())
                 Map[CY] = Map[CY][:CX] + "." + Map[CY][CX+1:]
                 Map[NY] = Map[NY][:NX] + "@" + Map[NY][NX+1:]
                 Xindex = NX
                 Yindex = NY
         case '[':
             if NX == CX:
-                if Move(NY, NX, Direction) and (Boxed or Move(NY, NX+1, Direction, True)):
-                    Map[CY] = Map[CY][:CX] + "." + Map[CY][CX+1:]
-                    Map[NY] = Map[NY][:NX] + "[" + Map[NY][NX+1:]
-                    Map[CY] = Map[CY][:CX+1] + "." + Map[CY][CX+2:]
-                    Map[NY] = Map[NY][:NX+1] + "]" + Map[NY][NX+2:]
+                if Move(NY, NX, Direction) and Move(NY, NX+1, Direction):
+                    # Map[CY] = Map[CY][:CX] + "." + Map[CY][CX+1:]
+                    # Map[NY] = Map[NY][:NX] + "[" + Map[NY][NX+1:]
+                    # Map[CY] = Map[CY][:CX+1] + "." + Map[CY][CX+2:]
+                    # Map[NY] = Map[NY][:NX+1] + "]" + Map[NY][NX+2:]
+                    buffer.writelines(f'Motion({CY}, {CX}, "[", {NY}, {NX});')
+                    buffer.writelines(f'Motion({CY}, {CX+1}, "]", {NY}, {NX+1});')
                     return True
             else:
                 if Move(NY, NX, Direction):
-                    Map[CY] = Map[CY][:CX] + "." + Map[CY][CX+1:]
-                    Map[NY] = Map[NY][:NX] + "[" + Map[NY][NX+1:]
+                    # Map[CY] = Map[CY][:CX] + "." + Map[CY][CX+1:]
+                    # Map[NY] = Map[NY][:NX] + "[" + Map[NY][NX+1:]
+                    buffer.writelines(f'Motion({CY}, {CX}, "[", {NY}, {NX});')
                     return True
 
         case ']':
             if NX == CX:
-                if Move(NY, NX, Direction) and (Boxed or Move(NY, NX-1, Direction, True)):
-                    Map[CY] = Map[CY][:CX] + "." + Map[CY][CX+1:]
-                    Map[NY] = Map[NY][:NX] + "]" + Map[NY][NX+1:]
-                    Map[CY] = Map[CY][:CX-1] + "." + Map[CY][CX:]
-                    Map[NY] = Map[NY][:NX-1] + "[" + Map[NY][NX:]
+                if Move(NY, NX, Direction) and Move(NY, NX-1, Direction):
+                    # Map[CY] = Map[CY][:CX] + "." + Map[CY][CX+1:]
+                    # Map[NY] = Map[NY][:NX] + "]" + Map[NY][NX+1:]
+                    # Map[CY] = Map[CY][:CX-1] + "." + Map[CY][CX:]
+                    # Map[NY] = Map[NY][:NX-1] + "[" + Map[NY][NX:]
+                    buffer.writelines(f'Motion({CY}, {CX}, "]", {NY}, {NX});')
+                    buffer.writelines(f'Motion({CY}, {CX-1}, "[", {NY}, {NX-1});')
                     return True
             else:
                 if Move(NY, NX, Direction):
-                    Map[CY] = Map[CY][:CX] + "." + Map[CY][CX+1:]
-                    Map[NY] = Map[NY][:NX] + "]" + Map[NY][NX+1:]
+                    # Map[CY] = Map[CY][:CX] + "." + Map[CY][CX+1:]
+                    # Map[NY] = Map[NY][:NX] + "]" + Map[NY][NX+1:]
+                    buffer.writelines(f'Motion({CY}, {CX}, "]", {NY}, {NX});')
                     return True
 
                 
 
-with open("Example15.txt", "r") as f:
+with open("input15.txt", "r") as f:
     input = f.read()
     input = input.split("\n\n")
     Map = input[0].split("\n")
@@ -80,10 +103,17 @@ with open("Example15.txt", "r") as f:
             break
 
 
+    buffer = io.StringIO() # I'm overcomplicating this
+    for j in Map:
+        print(j)
     for i in range(len(Orders)):
         Move(Yindex, Xindex, Orders[i])
-        for j in Map:
-            print(j)
+        # time.sleep(0.001)
+        # os.system('cls')
+        # for j in Map:
+        #     print(j)
+        buffer.seek(0)
+        buffer.truncate()
     
     
         

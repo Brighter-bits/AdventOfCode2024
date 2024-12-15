@@ -134,3 +134,8 @@ Overall, seems quite simple, I just have to follow the movement along, if there'
 A single off by one error, but overall, nice and easy.
 
 This Second part looks quite a bit harder. Actually, upon further inspection, it might just be a simple edit to the move function.
+
+I have a slight problem in that I move things form the last object to be moved to the first due to how the recursion works. So I'm going to overcomplicated this and create a buffer of movements which only gets
+executed if everything can move.
+
+WHOOPS, may have accidentally spent a bit too long making the thing look pretty, it's done now though.
