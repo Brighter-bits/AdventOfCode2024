@@ -139,3 +139,7 @@ I have a slight problem in that I move things form the last object to be moved t
 executed if everything can move.
 
 WHOOPS, may have accidentally spent a bit too long making the thing look pretty, it's done now though.
+
+# Day 16
+
+This does not look good. How are you supposed to do a maze? A path finding algorithm? Flood fill? Might have to learn Djistrkaaoisadaoisdnaosidbaosid's shortest path algorithm, or O*.
