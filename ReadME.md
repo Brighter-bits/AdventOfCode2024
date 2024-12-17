@@ -150,6 +150,8 @@ I'm sobbing and crying, I don't know what to do. Time to ask for AId.
 
 This is going to take a lot of time to learn. Why is it always the days ending in 6? Thank god there's no December 26th
 
+OH MY GOD. It's midnight, Day 17. I have just implemented Didi's shortest path algorithm and finished part 1. Part2? That's a problem for Day 18.
+
 # Day 17
 
 Still depressed after yesterday, first part looks easy enough

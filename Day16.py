@@ -1,4 +1,4 @@
-import heapq # Aparrantly this is efficient
+import heapq # Aparrently this is efficient
 # def Follow(Coord, Taken = "", Possible = None, Direction = 1, CurrentScore = None):
 #     global maze
 #     if Possible == None:
@@ -80,32 +80,74 @@ import heapq # Aparrantly this is efficient
 #     Line((ChoiceLocations[-1][0], ChoiceLocations[-1][1]), int(ChoiceLine[-1]))
 
 
-def NodeFinder(Coord): 
+def NodeFinder(Coord) -> dict[dict]: 
     global graph
     global maze
+    # breakpoint()
     temp = {(Coord[0], Coord[1]): {}}
     for i in range(4):
         NY = Coord[0]
         NX = Coord[1]
         steps = 0
-        while maze[NY][NX] == ".":
+        while maze[NY][NX] == "." or maze[NY][NX] == "S":
             NY += DirectionIndex[i][0]
             NX += DirectionIndex[i][1]
             steps += 1
+            if i%2 == 0:
+                if maze[NY][NX+1] == ".":
+                    temp[(Coord[0], Coord[1])][(NY, NX)] = steps + 1000
+                if maze[NY][NX-1] == ".":
+                    temp[(Coord[0], Coord[1])][(NY, NX)] = steps + 1000
+            else:
+                if maze[NY+1][NX] == ".":
+                    temp[(Coord[0], Coord[1])][(NY, NX)] = steps + 1000
+                if maze[NY-1][NX] == ".":
+                    temp[(Coord[0], Coord[1])][(NY, NX)] = steps + 1000
+            
         if maze[NY][NX] != "S" and maze[NY][NX] != "E":
             NY -= DirectionIndex[i][0]
             NX -= DirectionIndex[i][1]
             steps -= 1
-        temp[(Coord[0], Coord[1])][(NY, NX)] = steps
-    print(temp)
+        if maze[NY][NX] != "E":
+            temp[(Coord[0], Coord[1])][(NY, NX)] = steps + 1000
+        else:
+            temp[(Coord[0], Coord[1])][(NY, NX)] = steps
+    try:
+        temp[(Coord[0], Coord[1])].pop((Coord[0], Coord[1]))
+    except:
+        pass
+    # print(temp)
+    # breakpoint()
+    return temp
         
 
 
     
 
-def DikeStra():
-    pass
+def DikeStra(FY, FX):
+    global graph
+    Distances = {(FY, FX): 0}
+    Visited = set()
+    PriorityQ = [(0, (FY, FX))]
 
+    while PriorityQ:
+        CDistance, CNode = heapq.heappop(PriorityQ)
+        if CNode in Visited:
+            continue
+        Visited.add(CNode)
+        NewNodes = NodeFinder(CNode)
+        CacheDict = {}
+
+        for key in set(graph.keys()).union(NewNodes.keys()):
+            CacheDict[key] = {**graph.get(key, {}), **NewNodes.get(key, {})}
+        graph = dict(CacheDict)
+
+        for NNode, weight in graph.get((CNode)).items():
+            distance = CDistance + weight
+            if NNode not in Distances or distance < Distances[NNode]:
+                Distances[NNode] = distance
+                heapq.heappush(PriorityQ, (distance, NNode))
+    return Distances
 
 
 
@@ -140,7 +182,9 @@ with open("input16.txt" , "r") as f:
     # ChoiceLine = ""
     # ChoiceLocations = []
     # Line((FY, FX), 1)
-    NodeFinder((FY, FX))
+    Please = DikeStra(FY, FX)
+    print(Please[(EY, EX)])
+
 
     # for i in maze:
     #     print(i)
