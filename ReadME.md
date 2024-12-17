@@ -146,4 +146,6 @@ This does not look good. How are you supposed to do a maze? A path finding algor
 
 Oh, no
 
-I'm sobbing and crying, I don't know what to do. Time to ask for AId
+I'm sobbing and crying, I don't know what to do. Time to ask for AId.
+
+This is going to take a lot of time to learn. Why is it always the days ending in 6? Thank god there's no December 26th

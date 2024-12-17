@@ -1,3 +1,4 @@
+import heapq # Aparrantly this is efficient
 # def Follow(Coord, Taken = "", Possible = None, Direction = 1, CurrentScore = None):
 #     global maze
 #     if Possible == None:
@@ -35,53 +36,75 @@
 #             Distance += 1
 
     
-def Line(Coord, Direction = 1):
-    breakpoint()
-    global ChoiceLine
-    global ChoiceLocations
+# def Line(Coord, Direction = 1):
+#     breakpoint()
+#     global ChoiceLine
+#     global ChoiceLocations
+#     global maze
+#     NY = Coord[0] + DirectionIndex[Direction][0]
+#     NX = Coord[1] + DirectionIndex[Direction][1]
+#     count = 0
+#     while maze[NY][NX] == ".":
+#         if maze[NY + DirectionIndex[(Direction+1)%4][0]][NX + DirectionIndex[(Direction+1)%4][1]] == ".":
+#             ChoiceLine += str(Direction)
+#             ChoiceLocations.append([NY, NX])
+#         elif maze[NY + DirectionIndex[(Direction-1)%4][0]][NX + DirectionIndex[(Direction-1)%4][1]] == ".":
+#             ChoiceLine += str(Direction)
+#             ChoiceLocations.append([NY, NX])
+#         maze[NY][NX] = "X"
+#         NY += DirectionIndex[Direction][0]
+#         NX += DirectionIndex[Direction][1]
+#         count += 1
+
+#     if count > 0:
+#         if maze[NY + DirectionIndex[(Direction+1)%4][0]][NX + DirectionIndex[(Direction+1)%4][1]] == ".":
+#             ChoiceLine += str(Direction)
+#             ChoiceLocations.append([NY, NX])
+#         elif maze[NY + DirectionIndex[(Direction-1)%4][0]][NX + DirectionIndex[(Direction-1)%4][1]] == ".":
+#             ChoiceLine += str(Direction)
+#             ChoiceLocations.append([NY, NX])
+
+#     if maze[NY][NX] == "#":
+#         NY -= DirectionIndex[Direction][0]
+#         NX -= DirectionIndex[Direction][1]
+
+#     if count == 0:
+#         ChoiceLocations.pop(-1)
+#         ChoiceLine = ChoiceLine[:-1]
+#     else:
+#         ChoiceLine = ChoiceLine[:-1] + str((int(ChoiceLine[-1])+1)%4)
+#     print(ChoiceLine, ChoiceLocations)
+
+#     for i in maze:
+#         print(i)
+#     Line((ChoiceLocations[-1][0], ChoiceLocations[-1][1]), int(ChoiceLine[-1]))
+
+
+def NodeFinder(Coord): 
+    global graph
     global maze
-    NY = Coord[0] + DirectionIndex[Direction][0]
-    NX = Coord[1] + DirectionIndex[Direction][1]
-    count = 0
-    while maze[NY][NX] == ".":
-        if maze[NY + DirectionIndex[(Direction+1)%4][0]][NX + DirectionIndex[(Direction+1)%4][1]] == ".":
-            ChoiceLine += str(Direction)
-            ChoiceLocations.append([NY, NX])
-        elif maze[NY + DirectionIndex[(Direction-1)%4][0]][NX + DirectionIndex[(Direction-1)%4][1]] == ".":
-            ChoiceLine += str(Direction)
-            ChoiceLocations.append([NY, NX])
-        maze[NY][NX] = "X"
-        NY += DirectionIndex[Direction][0]
-        NX += DirectionIndex[Direction][1]
-        count += 1
-
-    if count > 0:
-        if maze[NY + DirectionIndex[(Direction+1)%4][0]][NX + DirectionIndex[(Direction+1)%4][1]] == ".":
-            ChoiceLine += str(Direction)
-            ChoiceLocations.append([NY, NX])
-        elif maze[NY + DirectionIndex[(Direction-1)%4][0]][NX + DirectionIndex[(Direction-1)%4][1]] == ".":
-            ChoiceLine += str(Direction)
-            ChoiceLocations.append([NY, NX])
-
-    if maze[NY][NX] == "#":
-        NY -= DirectionIndex[Direction][0]
-        NX -= DirectionIndex[Direction][1]
-
-    if count == 0:
-        ChoiceLocations.pop(-1)
-        ChoiceLine = ChoiceLine[:-1]
-    else:
-        ChoiceLine = ChoiceLine[:-1] + str((int(ChoiceLine[-1])+1)%4)
-    print(ChoiceLine, ChoiceLocations)
-
-    for i in maze:
-        print(i)
-    Line((ChoiceLocations[-1][0], ChoiceLocations[-1][1]), int(ChoiceLine[-1]))
+    temp = {(Coord[0], Coord[1]): {}}
+    for i in range(4):
+        NY = Coord[0]
+        NX = Coord[1]
+        steps = 0
+        while maze[NY][NX] == ".":
+            NY += DirectionIndex[i][0]
+            NX += DirectionIndex[i][1]
+            steps += 1
+        if maze[NY][NX] != "S" and maze[NY][NX] != "E":
+            NY -= DirectionIndex[i][0]
+            NX -= DirectionIndex[i][1]
+            steps -= 1
+        temp[(Coord[0], Coord[1])][(NY, NX)] = steps
+    print(temp)
+        
 
 
+    
 
-
-
+def DikeStra():
+    pass
 
 
 
@@ -112,8 +135,12 @@ with open("input16.txt" , "r") as f:
                 EX = X
                 EY = Y
 
-    ChoiceLine = ""
-    ChoiceLocations = []
-    Line((FY, FX), 1)
-    for i in maze:
-        print(i)
+    graph = {}
+
+    # ChoiceLine = ""
+    # ChoiceLocations = []
+    # Line((FY, FX), 1)
+    NodeFinder((FY, FX))
+
+    # for i in maze:
+    #     print(i)
