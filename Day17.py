@@ -57,10 +57,11 @@ def CountMaker():
     temp = 0
     for i in range(len(TA)):
         # breakpoint()
-        if i == 0:
-            temp += (8*TA[-1-i])
-        else:
-            temp += ((8**(i))*7*TA[-1-i])
+        temp += (8**(i+1)*(TA[-i-1]))
+    if len(TA) > 10:
+        temp -= 3**(len(TA)-5) # Subtract some because the algo isn't perfect
+    if len(TA) == 15:
+        breakpoint()
     print(temp)
     return temp
 
@@ -81,12 +82,17 @@ with open("input17.txt", "r") as f:
         B = FB
         C = FC
         out = Run(count)
-        # print(out)
+        print(out, "\t", count, "\t", Target[increment:], "\t", TA)
 
         if out == Target[increment:]:
-            TA.append(TASMAKER())
-            count = CountMaker()
-            increment -= 2
+            if increment != 0:
+                TA.append(TASMAKER())
+                count = CountMaker()
+                increment -= 2
+                if increment == -len(Target):
+                    increment = 0
+            else:
+                break
 
         # if out == Target[-1]:
         #     TA.append(TASMAKER())
@@ -112,7 +118,7 @@ with open("input17.txt", "r") as f:
         #     TA.append(TASMAKER())
         #     print(CountMaker())
         #     count = (8*TA[3]) + (56*TA[2]) + ((8**2)*7*TA[1]) + ((8**3)*7*TA[0])
-        #     print(count, Target[-9:], TA)
+            print("HEY!")
         #     break
 
         else:
@@ -120,4 +126,4 @@ with open("input17.txt", "r") as f:
         # print(TA, count)
 
         # print(count)
-    # print(count)
+    print(count)

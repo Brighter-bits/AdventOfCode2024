@@ -157,3 +157,5 @@ Still depressed after yesterday, first part looks easy enough
 And it was, it was also really fun
 
 Part two though, looks to be a ~~Brute Force~~ Mathematical Problem.
+
+Uhhhh, I got close? I may have had to slightly adjust my jumping because the calculation was more of an estimate than an accurate calculation. Now, BACK TO DAY 16!
