@@ -95,20 +95,20 @@ def NodeFinder(Coord) -> dict[dict]:
             steps += 1
             if i%2 == 0:
                 if maze[NY][NX+1] == ".":
-                    temp[(Coord[0], Coord[1])][(NY, NX)] = steps + 1000
+                    temp[(Coord[0], Coord[1])][(NY, NX)] = steps + 1000 if part == 1 else steps
                 if maze[NY][NX-1] == ".":
-                    temp[(Coord[0], Coord[1])][(NY, NX)] = steps + 1000
+                    temp[(Coord[0], Coord[1])][(NY, NX)] = steps + 1000 if part == 1 else steps
             else:
                 if maze[NY+1][NX] == ".":
-                    temp[(Coord[0], Coord[1])][(NY, NX)] = steps + 1000
+                    temp[(Coord[0], Coord[1])][(NY, NX)] = steps + 1000 if part == 1 else steps
                 if maze[NY-1][NX] == ".":
-                    temp[(Coord[0], Coord[1])][(NY, NX)] = steps + 1000
+                    temp[(Coord[0], Coord[1])][(NY, NX)] = steps + 1000 if part == 1 else steps
             
         if maze[NY][NX] != "S" and maze[NY][NX] != "E":
             NY -= DirectionIndex[i][0]
             NX -= DirectionIndex[i][1]
             steps -= 1
-        if maze[NY][NX] != "E":
+        if maze[NY][NX] != "E" and part == 1:
             temp[(Coord[0], Coord[1])][(NY, NX)] = steps + 1000
         else:
             temp[(Coord[0], Coord[1])][(NY, NX)] = steps
@@ -123,20 +123,29 @@ def NodeFinder(Coord) -> dict[dict]:
 
 
     
-
+part = 1
 def DikeStra(FY, FX):
     global graph
     Distances = {(FY, FX): 0}
     Visited = set()
-    PriorityQ = [(0, (FY, FX))]
-
+    EarlierNodes = {(FY, FX): [[(FY, FX)]]}
+    PriorityQ = [(0, (FY, FX), [(FY, FX)])]
+    Shortest = 99999999
     while PriorityQ:
-        CDistance, CNode = heapq.heappop(PriorityQ)
-        if CNode in Visited:
+        CDistance, CNode, CPath = heapq.heappop(PriorityQ)
+        if CNode in Visited and CDistance > Shortest:
+            continue
+        if CNode == (EY, EX):
+            if CDistance < Shortest:
+                Shortest = CDistance
+                EarlierNodes[(FY, FX)] = [CPath]
+            elif CDistance == Shortest:
+                EarlierNodes[(FY, FX)].append([CPath])
             continue
         Visited.add(CNode)
         NewNodes = NodeFinder(CNode)
         CacheDict = {}
+
 
         for key in set(graph.keys()).union(NewNodes.keys()):
             CacheDict[key] = {**graph.get(key, {}), **NewNodes.get(key, {})}
@@ -144,14 +153,28 @@ def DikeStra(FY, FX):
 
         for NNode, weight in graph.get((CNode)).items():
             distance = CDistance + weight
+            NPath = [path + [NNode] for path in EarlierNodes[CNode]]
             if NNode not in Distances or distance < Distances[NNode]:
                 Distances[NNode] = distance
-                heapq.heappush(PriorityQ, (distance, NNode))
-    return Distances
+                EarlierNodes[NNode] = NPath
+                heapq.heappush(PriorityQ, (distance, NNode, NPath[0]))
+            elif distance == Distances[NNode]:
+                EarlierNodes[NNode].extend(NPath)
+                heapq.heappush(PriorityQ, (distance, NNode, NPath[0]))
+    return Distances, EarlierNodes
 
 
-
-
+# def CheckingBackwards(EarlierNodes, Start, End): # I'm going just put my faith in this code
+#     routes = []
+#     def Check(current, route):
+#         # breakpoint()
+#         if current == Start:
+#             routes.append([Start] + route)
+#             return
+#         for PNode in EarlierNodes[current]:
+#             Check(PNode, [current] + route)
+#     Check(End, [])
+#     return routes
 
 
 with open("input16.txt" , "r") as f:
@@ -182,9 +205,14 @@ with open("input16.txt" , "r") as f:
     # ChoiceLine = ""
     # ChoiceLocations = []
     # Line((FY, FX), 1)
-    Please = DikeStra(FY, FX)
-    print(Please[(EY, EX)])
+    Please, Paths = DikeStra(FY, FX)
 
+    # Previous = CheckingBackwards(Paths, (FY, FX),  (EY, EX),)
+
+    print(Paths)
+    
+    for i in Paths:
+        print(i)
 
     # for i in maze:
     #     print(i)

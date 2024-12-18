@@ -154,6 +154,8 @@ OH MY GOD. It's midnight, Day 17. I have just implemented Didi's shortest path a
 
 
 
+
+
 # Day 17
 
 Still depressed after yesterday, first part looks easy enough
