@@ -127,6 +127,7 @@ def NodeFinder(Coord) -> dict[dict]:
 def DikeStra(FY, FX):
     global graph
     Distances = {(FY, FX): 0}
+    Paths = {(FY, FX): [[(FY, FX)]]}
     Visited = set()
     PriorityQ = [(0, (FY, FX))]
 
@@ -146,10 +147,29 @@ def DikeStra(FY, FX):
             distance = CDistance + weight
             if NNode not in Distances or distance < Distances[NNode]:
                 Distances[NNode] = distance
+                Paths[NNode] = [path + [NNode] for path in Paths[CNode]]
                 heapq.heappush(PriorityQ, (distance, NNode))
-    return Distances
+            elif distance == Distances[NNode]:
+                Paths[NNode].extend([path + [NNode] for path in Paths[CNode]])
+    return Distances, Paths
 
+def SquareGetter(Nodes):
+    global Squares
+    for i in range(len(Nodes)-1):
+        Node1Y = Nodes[i][0]
+        Node1X = Nodes[i][1]
+        Node2Y = Nodes[i][0]
+        Node2X = Nodes[i][1]
 
+        YDiff = Node2Y - Node1Y
+        XDiff = Node2X - Node1X
+
+        if XDiff == 0:
+            
+        elif YDiff == 0:
+
+        else:
+            raise IndexError("There should be some kind of non-difference")
 
 
 
@@ -182,9 +202,12 @@ with open("input16.txt" , "r") as f:
     # ChoiceLine = ""
     # ChoiceLocations = []
     # Line((FY, FX), 1)
-    Please = DikeStra(FY, FX)
+    Please, Routes = DikeStra(FY, FX)
     print(Please[(EY, EX)])
-
+    Routes = Routes.get((EY, EX))
+    Squares = []
+    for i in Routes:
+        print(i)
 
     # for i in maze:
     #     print(i)
