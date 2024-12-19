@@ -158,18 +158,32 @@ def SquareGetter(Nodes):
     for i in range(len(Nodes)-1):
         Node1Y = Nodes[i][0]
         Node1X = Nodes[i][1]
-        Node2Y = Nodes[i][0]
-        Node2X = Nodes[i][1]
-
+        Node2Y = Nodes[i+1][0]
+        Node2X = Nodes[i+1][1]
+        # breakpoint()
         YDiff = Node2Y - Node1Y
         XDiff = Node2X - Node1X
 
         if XDiff == 0:
-            
+            if Node1Y < Node2Y:
+                for i in range(Node1Y, Node2Y+1):
+                    if (i, Node1X) not in Squares:
+                        Squares.append((i, Node1X))
+            else:
+                for i in range(Node2Y, Node1Y+1):
+                    if (i, Node1X) not in Squares:
+                        Squares.append((i, Node1X))
         elif YDiff == 0:
-
+            if Node1X < Node2X:
+                for i in range(Node1X, Node2X+1):
+                    if (Node1Y, i) not in Squares:
+                        Squares.append((Node1Y, i))
+            else:
+                for i in range(Node2X, Node1X+1):
+                    if (Node1Y, i) not in Squares:
+                        Squares.append((Node1Y, i))
         else:
-            raise IndexError("There should be some kind of non-difference")
+            raise IndexError("There should be some kind of non-difference, if not, swear, because we're not going to be able to debug this.")
 
 
 
@@ -207,7 +221,8 @@ with open("input16.txt" , "r") as f:
     Routes = Routes.get((EY, EX))
     Squares = []
     for i in Routes:
-        print(i)
+        SquareGetter(i)
+    print(len(Squares))
 
     # for i in maze:
     #     print(i)
