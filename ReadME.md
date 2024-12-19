@@ -171,3 +171,11 @@ Uhhhh, I got close? I may have had to slightly adjust my jumping because the cal
 Another path finding one, this time however, I think I'll be able to use flood fill. Which should be useful for getting around the gaps.
 
 Flood fill worked perfectly, for both parts, I feel so cool. Now, BACK TO DAY 16!
+
+# Day 19
+
+Looks quite simple, I can just brute force it, truncating the string each time until I find an exact match
+
+It's not working, it keeps giving me 170, I need to find a different solution. 
+
+Nevermind, it works
