@@ -178,4 +178,9 @@ Looks quite simple, I can just brute force it, truncating the string each time u
 
 It's not working, it keeps giving me 170, I need to find a different solution. 
 
-Nevermind, it works
+Nevermind, it works.
+
+So, brute forcing will take too long... but memoisation, could change everything. Interestingly, trying to change a global variable inside a cached function doesn't exactly work, because the cache only stores
+the return value. So I used the putting a function inside a function I learned from my halfway complete Day 16 Part 2 and have the function return a number.
+
+My god that was fast, I love memoisation.
