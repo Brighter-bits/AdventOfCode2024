@@ -231,4 +231,11 @@ It's done now though.
 
 Umm, this problem is just a whole load of calculations, isn't it brute force problem with some memoisation of course?
 
-Part 1 complete, well that was quick
+Part 1 complete, well that was quick, the next part seems brute forceable too? I may need to optimise it slightly.
+
+Written the code, I should probably optimise it, but if I wait like, an hour, it should be done.
+
+Nevermind, I have optimised it slightly. It now counts the number of commas in a string to determine the position of the price.
+
+For some reason it's not working. Ah, it turns out, that the program would confuse a sequence of [1, 2, 3, 4] with [-1, 2, 3, 4] as the program would ignore the -. So the start of the sequence now has a comma
+[,1,2,3,4] so that the first number's sign is checked.
