@@ -152,7 +152,7 @@ This is going to take a lot of time to learn. Why is it always the days ending i
 
 OH MY GOD. It's midnight, Day 17. I have just implemented Didi's shortest path algorithm and finished part 1. Part2? That's a problem for Day 18.
 
-
+Day 19. It's over.
 
 
 
@@ -184,3 +184,45 @@ So, brute forcing will take too long... but memoisation, could change everything
 the return value. So I used the putting a function inside a function I learned from my halfway complete Day 16 Part 2 and have the function return a number.
 
 My god that was fast, I love memoisation.
+
+# Day 20
+
+Another maze... Why do they keep giving me mazes? ERIC WHY???? 
+
+I'll go through, note which walls have stuff on the other side, and then use a recursive to get to the end, which I can memoise.
+
+Scratch that, I can just put every coord into an array, since the index is the number of picoseconds. I then find the difference and see if it is above 102 (100 + the two picoseconds cheating), if so then it's
+valid.
+
+Part 2? What? How am I supposed to do this? How am I supposed to make a diamond?
+
+Okay, a few hours and I think I have it, it's a pretty long if statement, but it'll work. Nevermind, too low.
+
+Ok, so the reason it was too low was because I was only looking at the positive coords, which actually may have decreased the number of possible cheats by 75%...
+
+Whoops. But it seems to be working now. Nevermind, I forgot that python's range is top exclusive. So I was going from -20 to 19. Which meant I was slightly off.
+
+Anyway, technically it's past midnight now, but that's fine. I'm still under 24h.
+
+# Day 21
+
+Today looks quite complicated, but I think with some recursive stuff, it shouldn't be too bad.
+
+I'm currently using a whole load of switch statements. I have a feeling I was supposed to implement Dijkstra's.
+
+My worst nightmare happened and I accidentally put in the wrong output, I spent ages debugging that. Now, I need 25 robots, so hopefully memoisation will save me.
+
+Might need to use Counter.
+
+Today has been tough, not been able to complete it in the day, but I haven't used AId yet. I have an idea however, so I need to remember this for tomorrow.
+
+This isn't going to be elegant.
+
+To put it simply, it seems the read thing that affects everything is the movement between the numbers, not the direction pads.
+So just get every single combination of the keypad runs and get the smallest one. This may not work. But I'm hopeful.
+
+I pray this works tomorrow.
+
+Urgh, that took far too long. Turns out that manually inputting all the codes means that you're likely to input a whole load of stuff wrong and in the wrong order.
+
+It's done now though.
