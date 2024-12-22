@@ -226,3 +226,9 @@ I pray this works tomorrow.
 Urgh, that took far too long. Turns out that manually inputting all the codes means that you're likely to input a whole load of stuff wrong and in the wrong order.
 
 It's done now though.
+
+# Day 22
+
+Umm, this problem is just a whole load of calculations, isn't it brute force problem with some memoisation of course?
+
+Part 1 complete, well that was quick
