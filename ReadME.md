@@ -239,3 +239,15 @@ Nevermind, I have optimised it slightly. It now counts the number of commas in a
 
 For some reason it's not working. Ah, it turns out, that the program would confuse a sequence of [1, 2, 3, 4] with [-1, 2, 3, 4] as the program would ignore the -. So the start of the sequence now has a comma
 [,1,2,3,4] so that the first number's sign is checked.
+
+# Day 23
+
+I woke up at 5AM. I feel amazing.
+
+So, with part 1, I considered using a dictionary, but wasn't sure how I would do it, so I didn't. Instead, I took two linked nodes and then check if they both connected to another node, thus making a
+triangle/group of 3.
+
+I may have spent a while debugging because I looked for t anywhere in the node instead of just at the start.
+
+Unfortunately, the second part required me to actually use a dictionary. I spent about an hour just staring at the screen. But it turns out it was actually quite simple.
+All you need to do is choose a node, and then save every node it connects to as a list. Then check each list, if it doesn't appear then it doesn't connect and so we get rid of it.
