@@ -251,3 +251,34 @@ I may have spent a while debugging because I looked for t anywhere in the node i
 
 Unfortunately, the second part required me to actually use a dictionary. I spent about an hour just staring at the screen. But it turns out it was actually quite simple.
 All you need to do is choose a node, and then save every node it connects to as a list. Then check each list, if it doesn't appear then it doesn't connect and so we get rid of it.
+
+# Day 24
+
+Okay, I can do this, make a dict containing all of the connections, then begin substituting the actual values in until I get the number.
+
+Huh, quite a lot of subroutines today, it's quite nice. Part two however, looks like a brute force only kind of thing... 
+
+Alright, turns out you can do something with a thing called a half-adder, which is where you use an AND and a XOR to create a logic system which also outputs whether you need to carry a one to the next place
+value.
+
+This is different from a full-adder which allows you to add your carry over into the equation instead of just outputting one.
+
+Unfortunately, I don't understand the "logic" (haha) behind it, so I'm going to avoid it unless I have to delve into it. 
+
+
+Turns out I have to learn adders at some point anyway, so may as well now.
+
+Half adders have A and B go into both a XOR gate an AND gate. The AND gate gives the carryover while the XOR gives the digit.
+
+Full adders are made up of a half adder, but the XOR output is given to another XOR gate with the previous carryover and another AND gate. The second AND gate's carryover is put in an OR with the previous AND
+gate's carryover to get the actual carryover. Meanwhile, the second XOR gate gives the digit.
+
+As such, if the program is supposed to add together perfectly, then the program must be using Full Adders. With the outputs from AND gates going to more AND gates to simulate carryovers
+
+So all I need to do is visualise it. Honestly, I could probably do this manually.
+
+The first addition (x00, y00) will have an AND and a XOR gate. The XOR gate will go to z00. The AND will then go to a variable we shall call G.
+
+The second addition (x01, y01) will go to a AND and a XOR gate. But the AND output will go to OR with the previous AND and the XOR will go to another XOR with the previous AND.
+
+I might just draw this.
