@@ -1,7 +1,5 @@
 # Christmas Eve!
 from copy import deepcopy
-from collections import OrderedDict
-from schemdraw import logic as L
 
 def DictMaker(arr):
     WireDict = dict(arr[0])
