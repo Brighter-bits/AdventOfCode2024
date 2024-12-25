@@ -282,3 +282,13 @@ The first addition (x00, y00) will have an AND and a XOR gate. The XOR gate will
 The second addition (x01, y01) will go to a AND and a XOR gate. But the AND output will go to OR with the previous AND and the XOR will go to another XOR with the previous AND.
 
 I might just draw this.
+
+# Day 25
+
+Looks very easy for some reason, just have to add up the lists and see if any exceed 7
+
+That's it? No Part 2? Oh... it's over.
+
+Well, this year was fun. Maybe I'll go back and make my code prettier at a later date, but for now? This is good. I guess I'll have to do previous years or wait for the next.
+
+Merry Christmas
